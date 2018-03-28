@@ -1,0 +1,36 @@
+name: CitybuildAddon
+version: 1.0
+author: bote100
+main: net.bote.citybuild.main.Main
+
+commands:
+  warp:
+  setwarp:
+  w:
+  near:
+  startkick:
+  ja:
+  nein:
+  voteday:
+  dayja:
+  daynein:
+  drops:
+  crates:
+  dropport:
+  support:
+  s:
+  handeln:
+  h:
+  sup:
+  togglemsg:
+  togglesup:
+  togglesupport:
+  msg:
+  r:
+  reply:
+  pe:
+  handelnaccept:
+  vanish:
+  v:
+  givecrates:
+  addwarp:
