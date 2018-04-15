@@ -17,47 +17,47 @@ import net.bote.citybuild.drops.Drops;
 
 public class Crates {
 	
-	public static String prefix = "§cCrates §7§l| §r";
+	public static String prefix = "Â§cCrates Â§7Â§l| Â§r";
 	
 	public static ArrayList<Player> list = new ArrayList<Player>();
 	
 	public static void openInventory(Player p, CrateType ct) {
 		
 		if(ct == CrateType.Player_Crate) {
-			Inventory inv = Bukkit.createInventory(null, 9*6, "§aCase§dOpening §8- §7Spieler Crate");
+			Inventory inv = Bukkit.createInventory(null, 9*6, "Â§7Spieler Crate");
 			
 			for(int i = 0; i < 9*6; i++) {
-				inv.setItem(i, Drops.createItem(Material.STAINED_GLASS_PANE, "§7Klick mich und gewinne!"));
+				inv.setItem(i, Drops.createItem(Material.STAINED_GLASS_PANE, "Â§7Klick mich und gewinne!"));
 			}
 			
 			p.openInventory(inv);
 			p.playSound(p.getLocation(), Sound.LEVEL_UP, 3, 3);
 		}
 		if(ct == CrateType.Legend_Crate) {
-			Inventory inv = Bukkit.createInventory(null, 9*6, "§aCase§dOpening §8- §2Lgnd Crate");
+			Inventory inv = Bukkit.createInventory(null, 9*6, "Â§2Legend Crate");
 			
 			for(int i = 0; i < 9*6; i++) {
-				inv.setItem(i, Drops.createItem(Material.STAINED_GLASS_PANE, "§7Klick mich und gewinne!"));
+				inv.setItem(i, Drops.createItem(Material.STAINED_GLASS_PANE, "Â§7Klick mich und gewinne!"));
 			}
 			
 			p.openInventory(inv);
 			p.playSound(p.getLocation(), Sound.LEVEL_UP, 3, 3);
 		}
 		if(ct == CrateType.Ultra_Crate) {
-			Inventory inv = Bukkit.createInventory(null, 9*6, "§aCase§dOpening §8- §bUltra Crate");
+			Inventory inv = Bukkit.createInventory(null, 9*6, "Â§bUltra Crate");
 			
 			for(int i = 0; i < 9*6; i++) {
-				inv.setItem(i, Drops.createItem(Material.STAINED_GLASS_PANE, "§7Klick mich und gewinne!"));
+				inv.setItem(i, Drops.createItem(Material.STAINED_GLASS_PANE, "Â§7Klick mich und gewinne!"));
 			}
 			
 			p.openInventory(inv);
 			p.playSound(p.getLocation(), Sound.LEVEL_UP, 3, 3);
 		}
 		if(ct == CrateType.Champion_Crate) {
-			Inventory inv = Bukkit.createInventory(null, 9*6, "§aCase§dOpening §8- §cChamp Crate");
+			Inventory inv = Bukkit.createInventory(null, 9*6, "Â§cChampion Crate");
 			
 			for(int i = 0; i < 9*6; i++) {
-				inv.setItem(i, Drops.createItem(Material.STAINED_GLASS_PANE, "§7Klick mich und gewinne!"));
+				inv.setItem(i, Drops.createItem(Material.STAINED_GLASS_PANE, "Â§7Klick mich und gewinne!"));
 			}
 			
 			p.openInventory(inv);
@@ -84,24 +84,24 @@ public class Crates {
 	
 	public static ItemStack giveCrate(CrateType type, int anzahl) {
 		if(type == CrateType.Player_Crate) {
-			return Crates.createSkull(anzahl, "§7Spieler Crate", "MHF_Chest");
+			return Crates.createSkull(anzahl, "Â§7Spieler Crate", "MHF_Chest");
 		} else if(type == CrateType.Legend_Crate) {
-			return Crates.createSkull(anzahl, "§2Legend Crate", "MHF_Chest");
+			return Crates.createSkull(anzahl, "Â§2Legend Crate", "MHF_Chest");
 		} else if(type == CrateType.Ultra_Crate) {
-			return Crates.createSkull(anzahl, "§bUltra Crate", "MHF_Chest");
+			return Crates.createSkull(anzahl, "Â§bUltra Crate", "MHF_Chest");
 		} else if(type == CrateType.Champion_Crate) {
-			return Crates.createSkull(anzahl, "§c§lChampion Crate", "MHF_Chest");
+			return Crates.createSkull(anzahl, "Â§cÂ§lChampion Crate", "MHF_Chest");
 		} else {
 			return null;
 		}
 	}
 	
 	public static void openAdminInv(Player p) {
-		Inventory inv = Bukkit.createInventory(null, 9, "§4Admin §cCrates");
-		inv.setItem(0, Crates.createSkull(64, "§7Spieler Crate", "MHF_Chest"));
-		inv.setItem(1, Crates.createSkull(64, "§2Legend Crate", "MHF_Chest"));
-		inv.setItem(2, Crates.createSkull(64, "§bUltra Crate", "MHF_Chest"));
-		inv.setItem(3, Crates.createSkull(64, "§c§lChampion Crate", "MHF_Chest"));
+		Inventory inv = Bukkit.createInventory(null, 9, "Â§4Admin Â§cCrates");
+		inv.setItem(0, Crates.createSkull(64, "Â§7Spieler Crate", "MHF_Chest"));
+		inv.setItem(1, Crates.createSkull(64, "Â§2Legend Crate", "MHF_Chest"));
+		inv.setItem(2, Crates.createSkull(64, "Â§bUltra Crate", "MHF_Chest"));
+		inv.setItem(3, Crates.createSkull(64, "Â§cÂ§lChampion Crate", "MHF_Chest"));
 		p.openInventory(inv);
 	}
 	
@@ -131,7 +131,7 @@ public class Crates {
 		case 4:
 			return new ItemStack(Material.GOLDEN_APPLE);
 		case 5:
-			return createItem(Material.YELLOW_FLOWER, 1, "§61000 Coins");
+			return createItem(Material.YELLOW_FLOWER, 1, "Â§61000 Coins");
 		case 6:
 			return new ItemStack(Material.IRON_PICKAXE);
 		case 7:
@@ -139,9 +139,9 @@ public class Crates {
 		case 8:
 			return new ItemStack(Material.SNOW_BLOCK, 16);
 		case 9:
-			return createItem(Material.IRON_CHESTPLATE, 1, "§b§lUltra §r§bBrustplatte");
+			return createItem(Material.IRON_CHESTPLATE, 1, "Â§bÂ§lUltra Â§rÂ§bBrustplatte");
 		case 10:
-			return createItem(Material.YELLOW_FLOWER, 1, "§6500 Coins");
+			return createItem(Material.YELLOW_FLOWER, 1, "Â§6500 Coins");
 		default:
 			return new ItemStack(Material.ROTTEN_FLESH);
 		}
@@ -159,7 +159,7 @@ public class Crates {
 		case 2:
 			return new ItemStack(Material.DIAMOND_HOE);
 		case 3:
-			return createItem(Material.YELLOW_FLOWER, 1, "§61000 Coins");
+			return createItem(Material.YELLOW_FLOWER, 1, "Â§61000 Coins");
 		case 4:
 			return new ItemStack(Material.CAKE);
 		case 5:
@@ -171,7 +171,7 @@ public class Crates {
 		case 8:
 			return new ItemStack(Material.DIAMOND_ORE, 8);
 		case 9:
-			return createItem(Material.YELLOW_FLOWER, 1, "§6500 Coins");
+			return createItem(Material.YELLOW_FLOWER, 1, "Â§6500 Coins");
 		case 10:
 			return new ItemStack(Material.IRON_SWORD);
 		default:
