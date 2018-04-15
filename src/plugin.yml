@@ -28,7 +28,6 @@ commands:
   msg:
   r:
   reply:
-  pe:
   handelnaccept:
   vanish:
   v:
