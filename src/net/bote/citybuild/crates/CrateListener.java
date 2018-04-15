@@ -192,7 +192,7 @@ public class CrateListener implements Listener {
 	
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
-		if(e.getInventory().getName().contains("Crate")) {
+		if(e.getInventory().getName().contains("Crate") && !e.getInventory().getName().equalsIgnoreCase("§4Admin §cCrates")) {
 			e.setCancelled(true);
 			Player p = (Player)e.getWhoClicked();
 			if(Crates.list.contains(p)) {
