@@ -37,22 +37,22 @@ public class CrateListener implements Listener {
 			if(e.getAction() == Action.RIGHT_CLICK_AIR) {
 				e.setCancelled(false);
 					try {
-						if(e.getItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Spieler Crate")) {
+						if(e.getItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§7Spieler Crate")) {
 							Crates.openInventory(p, CrateType.Player_Crate);
 							Crates.list.add(p);
 							removeItem(p, createSkull(dis, "MHF_Chest"), p.getItemInHand().getType(), dis, plugin);
 							p.updateInventory();
-						} else if(dis.equalsIgnoreCase("§2Legend Crate")){
+						} else if(dis.equalsIgnoreCase("Â§2Legend Crate")){
 							Crates.openInventory(p, CrateType.Legend_Crate);
 							Crates.list.add(p);
 							removeItem(p, createSkull(dis, "MHF_Chest"), p.getItemInHand().getType(), dis, plugin);
 							p.updateInventory();
-						} else if(dis.equalsIgnoreCase("§bUltra Crate")) {
+						} else if(dis.equalsIgnoreCase("Â§bUltra Crate")) {
 							Crates.openInventory(p, CrateType.Ultra_Crate);
 							Crates.list.add(p);
 							removeItem(p, createSkull(dis, "MHF_Chest"), p.getItemInHand().getType(), dis, plugin);
 							p.updateInventory();
-						} else if(dis.equalsIgnoreCase("§c§lChampion Crate")) {
+						} else if(dis.equalsIgnoreCase("Â§cÂ§lChampion Crate")) {
 							Crates.openInventory(p, CrateType.Champion_Crate);
 							Crates.list.add(p);
 							
@@ -64,12 +64,12 @@ public class CrateListener implements Listener {
 					}
 			} else if(e.getAction() == Action.RIGHT_CLICK_BLOCK && isCrate(e.getItem())) {
 				e.setCancelled(true);
-				p.sendMessage("§9Citybuild §7| §cDu kannst keine Crates platzieren!");
+				p.sendMessage("Â§9Citybuild Â§7| Â§cDu kannst keine Crates platzieren!");
 			} else if(e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) {
 				try {
 					
-					if(e.getItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Spieler Crate")) {
-						Inventory inv = Bukkit.createInventory(null, 9*3, "§6§lDu kannst gewinnen:");
+					if(e.getItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§7Spieler Crate")) {
+						Inventory inv = Bukkit.createInventory(null, 9*3, "Â§6Â§lDu kannst gewinnen:");
 						inv.setItem(0, new ItemStack(Material.DIAMOND));
 						inv.setItem(1, new ItemStack(Material.APPLE));
 						inv.setItem(2, new ItemStack(Material.WOOD, 16));
@@ -81,10 +81,10 @@ public class CrateListener implements Listener {
 						inv.setItem(8, new ItemStack(Material.STONE_PICKAXE));
 						inv.setItem(9, new ItemStack(Material.CARROT_ITEM));
 						inv.setItem(10, new ItemStack(Material.SNOW_BLOCK));
-						inv.setItem(11, Drops.createFireWork("§7Low-Drop", 64, Color.GRAY, 1));
+						inv.setItem(11, Drops.createFireWork("Â§7Low-Drop", 64, Color.GRAY, 1));
 						p.openInventory(inv);
-					} else if(dis.equalsIgnoreCase("§2Legend Crate")){
-						Inventory inv = Bukkit.createInventory(null, 9*3, "§6§lDu kannst gewinnen:");
+					} else if(dis.equalsIgnoreCase("Â§2Legend Crate")){
+						Inventory inv = Bukkit.createInventory(null, 9*3, "Â§6Â§lDu kannst gewinnen:");
 						inv.setItem(0, new ItemStack(Material.DIAMOND, 4));
 						inv.setItem(1, new ItemStack(Material.EMERALD));
 						inv.setItem(2, new ItemStack(Material.WOOD, 64));
@@ -94,36 +94,36 @@ public class CrateListener implements Listener {
 						inv.setItem(6, new ItemStack(Material.IRON_INGOT, 16));
 						inv.setItem(7, new ItemStack(Material.SNOW_BLOCK, 16));
 						inv.setItem(8, new ItemStack(Material.BOOK));
-						inv.setItem(9, Drops.createFireWork("§bUltra-Drop", 4, Color.AQUA, 1));
+						inv.setItem(9, Drops.createFireWork("Â§bUltra-Drop", 4, Color.AQUA, 1));
 						p.openInventory(inv);
-					} else if(dis.equalsIgnoreCase("§bUltra Crate")) {
-						Inventory inv = Bukkit.createInventory(null, 9*3, "§6§lDu kannst gewinnen:");
+					} else if(dis.equalsIgnoreCase("Â§bUltra Crate")) {
+						Inventory inv = Bukkit.createInventory(null, 9*3, "Â§6Â§lDu kannst gewinnen:");
 						inv.setItem(0, new ItemStack(Material.DIAMOND, 4));
 						inv.setItem(1, new ItemStack(Material.EMERALD, 4));
 						inv.setItem(2, new ItemStack(Material.WOOD, 64));
 						inv.setItem(3, new ItemStack(Material.COOKED_BEEF, 32));
 						inv.setItem(4, new ItemStack(Material.GOLDEN_APPLE));
-						inv.setItem(5, Crates.createItem(Material.YELLOW_FLOWER, 1, "§61000 Coins"));
+						inv.setItem(5, Crates.createItem(Material.YELLOW_FLOWER, 1, "Â§61000 Coins"));
 						inv.setItem(6, new ItemStack(Material.IRON_PICKAXE));
 						inv.setItem(7, new ItemStack(Material.SNOW_BLOCK, 16));
 						inv.setItem(8, new ItemStack(Material.IRON_INGOT, 16));
-						inv.setItem(9, Crates.createItem(Material.IRON_CHESTPLATE, 1, "§b§lUltra §r§bBrustplatte"));
-						inv.setItem(10, Crates.createItem(Material.YELLOW_FLOWER, 1, "§6500 Coins"));
+						inv.setItem(9, Crates.createItem(Material.IRON_CHESTPLATE, 1, "Â§bÂ§lUltra Â§rÂ§bBrustplatte"));
+						inv.setItem(10, Crates.createItem(Material.YELLOW_FLOWER, 1, "Â§6500 Coins"));
 						p.openInventory(inv);
-					} else if(dis.equalsIgnoreCase("§c§lChampion Crate")) {
-						Inventory inv = Bukkit.createInventory(null, 9*3, "§6§lDu kannst gewinnen:");
+					} else if(dis.equalsIgnoreCase("Â§cÂ§lChampion Crate")) {
+						Inventory inv = Bukkit.createInventory(null, 9*3, "Â§6Â§lDu kannst gewinnen:");
 						inv.setItem(0, new ItemStack(Material.DIAMOND_BLOCK));
 						inv.setItem(1, new ItemStack(Material.GOLDEN_APPLE, 16));
 						inv.setItem(2, new ItemStack(Material.DIAMOND_HOE));
-						inv.setItem(3, Crates.createItem(Material.YELLOW_FLOWER, 1, "§61000 Coins"));
+						inv.setItem(3, Crates.createItem(Material.YELLOW_FLOWER, 1, "Â§61000 Coins"));
 						inv.setItem(4, new ItemStack(Material.CAKE));
 						inv.setItem(5, new ItemStack(Material.IRON_PICKAXE));
 						inv.setItem(6, new ItemStack(Material.IRON_INGOT, 32));
 						inv.setItem(7, new ItemStack(Material.DIAMOND_ORE, 8));
-						inv.setItem(8, Crates.createItem(Material.YELLOW_FLOWER, 1, "§6500 Coins"));
+						inv.setItem(8, Crates.createItem(Material.YELLOW_FLOWER, 1, "Â§6500 Coins"));
 						inv.setItem(9, new ItemStack(Material.IRON_SWORD));
 						inv.setItem(10, new ItemStack(Material.SNOW_BLOCK));
-						inv.setItem(11, Drops.createFireWork("§7Low-Drop", 64, Color.GRAY, 1));
+						inv.setItem(11, Drops.createFireWork("Â§7Low-Drop", 64, Color.GRAY, 1));
 						p.openInventory(inv);
 					}
 					
@@ -135,10 +135,10 @@ public class CrateListener implements Listener {
 	
 	private boolean isCrate(ItemStack i) {
 		try {
-			if(i.getItemMeta().getDisplayName().equalsIgnoreCase("§7Spieler Crate") ||
-					i.getItemMeta().getDisplayName().equalsIgnoreCase("§2Legend Crate") ||
-					i.getItemMeta().getDisplayName().equalsIgnoreCase("§bUltra Crate") ||
-					i.getItemMeta().getDisplayName().equalsIgnoreCase("§c§lChampion Crate")) {
+			if(i.getItemMeta().getDisplayName().equalsIgnoreCase("Â§7Spieler Crate") ||
+					i.getItemMeta().getDisplayName().equalsIgnoreCase("Â§2Legend Crate") ||
+					i.getItemMeta().getDisplayName().equalsIgnoreCase("Â§bUltra Crate") ||
+					i.getItemMeta().getDisplayName().equalsIgnoreCase("Â§cÂ§lChampion Crate")) {
 				return true;
 			} else {
 				return false;
@@ -192,15 +192,15 @@ public class CrateListener implements Listener {
 	
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
-		if(e.getInventory().getName().contains("§aCase§dOpening")) {
+		if(e.getInventory().getName().contains("Crate")) {
 			e.setCancelled(true);
 			Player p = (Player)e.getWhoClicked();
 			if(Crates.list.contains(p)) {
 				try {
-					if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Klick mich und gewinne!")) {
+					if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Â§7Klick mich und gewinne!")) {
 						
 						int i = e.getSlot();
-						if(e.getInventory().getName().equalsIgnoreCase("§aCase§dOpening §8- §7Spieler Crate")) {
+						if(e.getInventory().getName().equalsIgnoreCase("Â§7Spieler Crate")) {
 							ItemStack is = Drops.getRandomLowDrop();
 							e.getInventory().setItem(i, is);
 							sendWinMessage(is, p);
@@ -208,7 +208,7 @@ public class CrateListener implements Listener {
 							p.getInventory().addItem(is);
 							Crates.list.remove(p);
 							e.getInventory().remove(Material.STAINED_GLASS_PANE);
-						} else if(e.getInventory().getName().equalsIgnoreCase("§aCase§dOpening §8- §2Lgnd Crate")) {
+						} else if(e.getInventory().getName().equalsIgnoreCase("Â§2Legend Crate")) {
 							ItemStack is = Drops.getRandomUltraDrop();
 							e.getInventory().setItem(i, is);
 							sendWinMessage(is, p);
@@ -216,15 +216,15 @@ public class CrateListener implements Listener {
 							p.getInventory().addItem(is);
 							Crates.list.remove(p);
 							e.getInventory().remove(Material.STAINED_GLASS_PANE);
-						} else if(e.getInventory().getName().equalsIgnoreCase("§aCase§dOpening §8- §bUltra Crate")) {
+						} else if(e.getInventory().getName().equalsIgnoreCase("Â§bUltra Crate")) {
 							ItemStack is = Crates.getChampionCrate();
 							try {
-								if(is.getItemMeta().getDisplayName().equalsIgnoreCase("§6500 Coins")) {
-									p.sendMessage(Crates.prefix+"§aDu hast §6500 Coins §agewonnen!");
+								if(is.getItemMeta().getDisplayName().equalsIgnoreCase("Â§6500 Coins")) {
+									p.sendMessage(Crates.prefix+"Â§aDu hast Â§6500 Coins Â§agewonnen!");
 									e.getInventory().setItem(i, is);
 									Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "money give " + p.getName() + " 500");
-								} else if(is.getItemMeta().getDisplayName().equalsIgnoreCase("§61000 Coins")) {
-									p.sendMessage(Crates.prefix+"§aDu hast §61000 Coins §agewonnen!");
+								} else if(is.getItemMeta().getDisplayName().equalsIgnoreCase("Â§61000 Coins")) {
+									p.sendMessage(Crates.prefix+"Â§aDu hast Â§61000 Coins Â§agewonnen!");
 									e.getInventory().setItem(i, is);
 									Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "money give " + p.getName() + " 1000");
 								} else {
@@ -240,15 +240,15 @@ public class CrateListener implements Listener {
 							e.getInventory().setItem(i, is);
 							Crates.list.remove(p);
 							e.getInventory().remove(Material.STAINED_GLASS_PANE);
-						} else if(e.getInventory().getName().equalsIgnoreCase("§aCase§dOpening §8- §cChamp Crate")) {
+						} else if(e.getInventory().getName().equalsIgnoreCase("Â§cChampion Crate")) {
 							ItemStack is = Crates.getChampionCrate();
 							try {
-								if(is.getItemMeta().getDisplayName().equalsIgnoreCase("§6500 Coins")) {
-									p.sendMessage(Crates.prefix+"§aDu hast §6500 Coins §agewonnen!");
+								if(is.getItemMeta().getDisplayName().equalsIgnoreCase("Â§6500 Coins")) {
+									p.sendMessage(Crates.prefix+"Â§aDu hast Â§6500 Coins Â§agewonnen!");
 									e.getInventory().setItem(i, is);
 									Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "money give " + p.getName() + " 500");
-								} else if(is.getItemMeta().getDisplayName().equalsIgnoreCase("§61000 Coins")) {
-									p.sendMessage(Crates.prefix+"§aDu hast §61000 Coins §agewonnen!");
+								} else if(is.getItemMeta().getDisplayName().equalsIgnoreCase("Â§61000 Coins")) {
+									p.sendMessage(Crates.prefix+"Â§aDu hast Â§61000 Coins Â§agewonnen!");
 									e.getInventory().setItem(i, is);
 									Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "money give " + p.getName() + " 1000");
 								} else {
@@ -270,12 +270,14 @@ public class CrateListener implements Listener {
 					
 				}
 			}
+		} else if(e.getInventory().getName().equalsIgnoreCase("Â§6Â§lDu kannst gewinnen:")) {
+			e.setCancelled(true);
 		}
 	}
 	
 	public static void sendWinMessage(ItemStack is, Player p) {
 		if(is != null && is.getItemMeta().getDisplayName() != null) {
-			p.sendMessage(Crates.prefix+"§aDu hast §6" + is.getItemMeta().getDisplayName() + " §agewonnen!");
+			p.sendMessage(Crates.prefix+"Â§aDu hast Â§6" + is.getItemMeta().getDisplayName() + " Â§agewonnen!");
 		}
 	}
 	
