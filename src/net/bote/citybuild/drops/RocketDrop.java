@@ -34,191 +34,195 @@ public class RocketDrop implements Listener {
 		if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 			try {
 			String dis = p.getItemInHand().getItemMeta().getDisplayName();
-				if(!drop.contains(p)) {
-					if(dis.equalsIgnoreCase("§7Low-Drop")) {
-						Location loc = p.getLocation();
-						Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+				
+				if(dis.equalsIgnoreCase("Â§7Low-Drop") || dis.equalsIgnoreCase("Â§bUltra-Drop") || dis.equalsIgnoreCase("Â§6Champion-Drop") || dis.equalsIgnoreCase("Â§cSuper-Drop") || dis.equalsIgnoreCase("Â§4Â§lMEGA-Drop")) {
+					if(!drop.contains(p)) {
+						if(dis.equalsIgnoreCase("Â§7Low-Drop")) {
+							Location loc = p.getLocation();
+							Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 
-							@Override
-							public void run() {
+								@Override
+								public void run() {
+									
+									String world = loc.getWorld().getName();
+									double x = loc.getX();
+									double y = loc.getY() + 20;
+									double z = loc.getZ();
+									double yaw = loc.getYaw();
+									double pitch = loc.getPitch();
+									
+									Location newloc = new Location(Bukkit.getWorld(world), x, y, z);
+									newloc.setYaw((float) yaw);
+									newloc.setPitch((float) pitch);
+									
+									
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomLowDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomLowDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomLowDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomLowDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomLowDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomLowDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomLowDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomLowDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomLowDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomLowDrop());
+								}
 								
-								String world = loc.getWorld().getName();
-								double x = loc.getX();
-								double y = loc.getY() + 20;
-								double z = loc.getZ();
-								double yaw = loc.getYaw();
-								double pitch = loc.getPitch();
-								
-								Location newloc = new Location(Bukkit.getWorld(world), x, y, z);
-								newloc.setYaw((float) yaw);
-								newloc.setPitch((float) pitch);
-								
-								
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomLowDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomLowDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomLowDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomLowDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomLowDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomLowDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomLowDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomLowDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomLowDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomLowDrop());
-							}
-							
-						}, 20*2);
-					}
-					else if(dis.equalsIgnoreCase("§bUltra-Drop")) {
-						Location loc = p.getLocation();
-						Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-
-							@Override
-							public void run() {
-								
-								String world = loc.getWorld().getName();
-								double x = loc.getX();
-								double y = loc.getY() + 20;
-								double z = loc.getZ();
-								double yaw = loc.getYaw();
-								double pitch = loc.getPitch();
-								
-								Location newloc = new Location(Bukkit.getWorld(world), x, y, z);
-								newloc.setYaw((float) yaw);
-								newloc.setPitch((float) pitch);
-								
-								
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomUltraDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomUltraDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomUltraDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomUltraDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomUltraDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomUltraDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomUltraDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomUltraDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomUltraDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomUltraDrop());
-							}
-							
-						}, 20*2);
-					}
-					else if(dis.equalsIgnoreCase("§6Champion-Drop")) {
-						Location loc = p.getLocation();
-						Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-
-							@Override
-							public void run() {
-								
-								String world = loc.getWorld().getName();
-								double x = loc.getX();
-								double y = loc.getY() + 20;
-								double z = loc.getZ() + 0.75;
-								double yaw = loc.getYaw();
-								double pitch = loc.getPitch();
-								
-								Location newloc = new Location(Bukkit.getWorld(world), x, y, z);
-								newloc.setYaw((float) yaw);
-								newloc.setPitch((float) pitch);
-								
-								
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomChampionDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomChampionDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomChampionDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomChampionDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomChampionDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomChampionDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomChampionDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomChampionDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomChampionDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomChampionDrop());
-							}
-							
-						}, 20*2);
-					}
-					else if(dis.equalsIgnoreCase("§cSuper-Drop")) {
-						Location loc = p.getLocation();
-						Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-
-							@Override
-							public void run() {
-								
-								String world = loc.getWorld().getName();
-								double x = loc.getX() + 1.5;
-								double y = loc.getY() + 20;
-								double z = loc.getZ();
-								double yaw = loc.getYaw();
-								double pitch = loc.getPitch();
-								
-								Location newloc = new Location(Bukkit.getWorld(world), x, y, z);
-								newloc.setYaw((float) yaw);
-								newloc.setPitch((float) pitch);
-								
-								
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomSuperDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomSuperDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomSuperDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomSuperDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomSuperDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomSuperDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomSuperDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomSuperDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomSuperDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomSuperDrop());
-							}
-							
-						}, 20*2);
-					}
-					else if(dis.equalsIgnoreCase("§4§lMEGA-Drop")) {
-						Location loc = p.getLocation();
-						for(Player all : Bukkit.getOnlinePlayers()) {
-							Drops.sendPortMessage(all, p);
-							all.playSound(all.getLocation(), Sound.AMBIENCE_THUNDER, 3F, 3F);
+							}, 20*2);
 						}
-						Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+						else if(dis.equalsIgnoreCase("Â§bUltra-Drop")) {
+							Location loc = p.getLocation();
+							Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
 
+								@Override
+								public void run() {
+									
+									String world = loc.getWorld().getName();
+									double x = loc.getX();
+									double y = loc.getY() + 20;
+									double z = loc.getZ();
+									double yaw = loc.getYaw();
+									double pitch = loc.getPitch();
+									
+									Location newloc = new Location(Bukkit.getWorld(world), x, y, z);
+									newloc.setYaw((float) yaw);
+									newloc.setPitch((float) pitch);
+									
+									
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomUltraDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomUltraDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomUltraDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomUltraDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomUltraDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomUltraDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomUltraDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomUltraDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomUltraDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomUltraDrop());
+								}
+								
+							}, 20*2);
+						}
+						else if(dis.equalsIgnoreCase("Â§6Champion-Drop")) {
+							Location loc = p.getLocation();
+							Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+
+								@Override
+								public void run() {
+									
+									String world = loc.getWorld().getName();
+									double x = loc.getX();
+									double y = loc.getY() + 20;
+									double z = loc.getZ() + 0.75;
+									double yaw = loc.getYaw();
+									double pitch = loc.getPitch();
+									
+									Location newloc = new Location(Bukkit.getWorld(world), x, y, z);
+									newloc.setYaw((float) yaw);
+									newloc.setPitch((float) pitch);
+									
+									
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomChampionDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomChampionDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomChampionDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomChampionDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomChampionDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomChampionDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomChampionDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomChampionDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomChampionDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomChampionDrop());
+								}
+								
+							}, 20*2);
+						}
+						else if(dis.equalsIgnoreCase("Â§cSuper-Drop")) {
+							Location loc = p.getLocation();
+							Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+
+								@Override
+								public void run() {
+									
+									String world = loc.getWorld().getName();
+									double x = loc.getX() + 1.5;
+									double y = loc.getY() + 20;
+									double z = loc.getZ();
+									double yaw = loc.getYaw();
+									double pitch = loc.getPitch();
+									
+									Location newloc = new Location(Bukkit.getWorld(world), x, y, z);
+									newloc.setYaw((float) yaw);
+									newloc.setPitch((float) pitch);
+									
+									
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomSuperDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomSuperDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomSuperDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomSuperDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomSuperDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomSuperDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomSuperDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomSuperDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomSuperDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getRandomSuperDrop());
+								}
+								
+							}, 20*2);
+						}
+						else if(dis.equalsIgnoreCase("Â§4Â§lMEGA-Drop")) {
+							Location loc = p.getLocation();
+							for(Player all : Bukkit.getOnlinePlayers()) {
+								Drops.sendPortMessage(all, p);
+								all.playSound(all.getLocation(), Sound.AMBIENCE_THUNDER, 3F, 3F);
+							}
+							Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+
+								@Override
+								public void run() {
+									
+									String world = loc.getWorld().getName();
+									double x = loc.getX();
+									double y = loc.getY() + 20;
+									double z = loc.getZ() + 1;
+									double yaw = loc.getYaw();
+									double pitch = loc.getPitch();
+									
+									Location newloc = new Location(Bukkit.getWorld(world), x, y, z);
+									newloc.setYaw((float) yaw);
+									newloc.setPitch((float) pitch);
+									
+									
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getMegaDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getMegaDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getMegaDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getMegaDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getMegaDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getMegaDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getMegaDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getMegaDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getMegaDrop());
+									Bukkit.getWorld(world).dropItem(newloc, Drops.getMegaDrop());
+								}
+								
+							}, 10*7);
+						} else {
+							// hai
+						}
+						drop.add(p);
+						Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+							
 							@Override
 							public void run() {
 								
-								String world = loc.getWorld().getName();
-								double x = loc.getX();
-								double y = loc.getY() + 20;
-								double z = loc.getZ() + 1;
-								double yaw = loc.getYaw();
-								double pitch = loc.getPitch();
+								drop.remove(p);
 								
-								Location newloc = new Location(Bukkit.getWorld(world), x, y, z);
-								newloc.setYaw((float) yaw);
-								newloc.setPitch((float) pitch);
-								
-								
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getMegaDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getMegaDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getMegaDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getMegaDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getMegaDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getMegaDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getMegaDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getMegaDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getMegaDrop());
-								Bukkit.getWorld(world).dropItem(newloc, Drops.getMegaDrop());
 							}
-							
-						}, 10*7);
+						}, 20*5);
 					} else {
-						// hai
+						p.sendMessage("Â§cWarte kurz, bis du wieder einen Drop zÃ¼ndest!");
 					}
-					drop.add(p);
-					Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-						
-						@Override
-						public void run() {
-							
-							drop.remove(p);
-							
-						}
-					}, 20*5);
-				} else {
-					p.sendMessage("§cWarte kurz, bis du wieder einen Drop zündest!");
 				}
+			
 			} catch (NullPointerException ignored) {
 				
 			}
