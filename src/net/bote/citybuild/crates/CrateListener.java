@@ -32,105 +32,121 @@ public class CrateListener implements Listener {
 	
 	@EventHandler
 	public void onCrate(PlayerInteractEvent e) {
-		Player p = e.getPlayer();
-			String dis = e.getItem().getItemMeta().getDisplayName();
-			if(e.getAction() == Action.RIGHT_CLICK_AIR) {
-				e.setCancelled(false);
-					try {
-						if(e.getItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Spieler Crate")) {
-							Crates.openInventory(p, CrateType.Player_Crate);
-							Crates.list.add(p);
-							removeItem(p, createSkull(dis, "MHF_Chest"), p.getItemInHand().getType(), dis, plugin);
-							p.updateInventory();
-						} else if(dis.equalsIgnoreCase("§2Legend Crate")){
-							Crates.openInventory(p, CrateType.Legend_Crate);
-							Crates.list.add(p);
-							removeItem(p, createSkull(dis, "MHF_Chest"), p.getItemInHand().getType(), dis, plugin);
-							p.updateInventory();
-						} else if(dis.equalsIgnoreCase("§bUltra Crate")) {
-							Crates.openInventory(p, CrateType.Ultra_Crate);
-							Crates.list.add(p);
-							removeItem(p, createSkull(dis, "MHF_Chest"), p.getItemInHand().getType(), dis, plugin);
-							p.updateInventory();
-						} else if(dis.equalsIgnoreCase("§c§lChampion Crate")) {
-							Crates.openInventory(p, CrateType.Champion_Crate);
-							Crates.list.add(p);
+		
+		try {
+			
+
+			Player p = e.getPlayer();
+			String dis;
+				try {
+					dis = e.getItem().getItemMeta().getDisplayName();
+				} catch (NullPointerException e1) {
+					return;
+				}
+				
+				if(e.getAction() == Action.RIGHT_CLICK_AIR) {
+					e.setCancelled(false);
+						try {
+							if(e.getItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Spieler Crate")) {
+								Crates.openInventory(p, CrateType.Player_Crate);
+								Crates.list.add(p);
+								removeItem(p, createSkull(dis, "MHF_Chest"), p.getItemInHand().getType(), dis, plugin);
+								p.updateInventory();
+							} else if(dis.equalsIgnoreCase("§2Legend Crate")){
+								Crates.openInventory(p, CrateType.Legend_Crate);
+								Crates.list.add(p);
+								removeItem(p, createSkull(dis, "MHF_Chest"), p.getItemInHand().getType(), dis, plugin);
+								p.updateInventory();
+							} else if(dis.equalsIgnoreCase("§bUltra Crate")) {
+								Crates.openInventory(p, CrateType.Ultra_Crate);
+								Crates.list.add(p);
+								removeItem(p, createSkull(dis, "MHF_Chest"), p.getItemInHand().getType(), dis, plugin);
+								p.updateInventory();
+							} else if(dis.equalsIgnoreCase("§c§lChampion Crate")) {
+								Crates.openInventory(p, CrateType.Champion_Crate);
+								Crates.list.add(p);
+								
+								removeItem(p, createSkull(dis, "MHF_Chest"), p.getItemInHand().getType(), dis, plugin);
+								p.updateInventory();
+							}
+						} catch (NullPointerException ignored) {
 							
-							removeItem(p, createSkull(dis, "MHF_Chest"), p.getItemInHand().getType(), dis, plugin);
-							p.updateInventory();
 						}
+				} else if(e.getAction() == Action.RIGHT_CLICK_BLOCK && isCrate(e.getItem())) {
+					e.setCancelled(true);
+					p.sendMessage("§9Citybuild §7| §cDu kannst keine Crates platzieren!");
+				} else if(e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) {
+					try {
+						
+						if(e.getItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Spieler Crate")) {
+							Inventory inv = Bukkit.createInventory(null, 9*3, "§6§lDu kannst gewinnen:");
+							inv.setItem(0, new ItemStack(Material.DIAMOND));
+							inv.setItem(1, new ItemStack(Material.APPLE));
+							inv.setItem(2, new ItemStack(Material.WOOD, 16));
+							inv.setItem(3, new ItemStack(Material.BREAD, 16));
+							inv.setItem(4, new ItemStack(Material.EGG));
+							inv.setItem(5, new ItemStack(Material.WOOD_HOE));
+							inv.setItem(6, new ItemStack(Material.IRON_INGOT, 8));
+							inv.setItem(7, new ItemStack(Material.SNOW_BLOCK));
+							inv.setItem(8, new ItemStack(Material.STONE_PICKAXE));
+							inv.setItem(9, new ItemStack(Material.CARROT_ITEM));
+							inv.setItem(10, new ItemStack(Material.SNOW_BLOCK));
+							inv.setItem(11, Drops.createFireWork("§7Low-Drop", 64, Color.GRAY, 1));
+							p.openInventory(inv);
+						} else if(dis.equalsIgnoreCase("§2Legend Crate")){
+							Inventory inv = Bukkit.createInventory(null, 9*3, "§6§lDu kannst gewinnen:");
+							inv.setItem(0, new ItemStack(Material.DIAMOND, 4));
+							inv.setItem(1, new ItemStack(Material.EMERALD));
+							inv.setItem(2, new ItemStack(Material.WOOD, 64));
+							inv.setItem(3, new ItemStack(Material.COOKED_BEEF, 32));
+							inv.setItem(4, new ItemStack(Material.CACTUS));
+							inv.setItem(5, new ItemStack(Material.CARROT_ITEM));
+							inv.setItem(6, new ItemStack(Material.IRON_INGOT, 16));
+							inv.setItem(7, new ItemStack(Material.SNOW_BLOCK, 16));
+							inv.setItem(8, new ItemStack(Material.BOOK));
+							inv.setItem(9, Drops.createFireWork("§bUltra-Drop", 4, Color.AQUA, 1));
+							p.openInventory(inv);
+						} else if(dis.equalsIgnoreCase("§bUltra Crate")) {
+							Inventory inv = Bukkit.createInventory(null, 9*3, "§6§lDu kannst gewinnen:");
+							inv.setItem(0, new ItemStack(Material.DIAMOND, 4));
+							inv.setItem(1, new ItemStack(Material.EMERALD, 4));
+							inv.setItem(2, new ItemStack(Material.WOOD, 64));
+							inv.setItem(3, new ItemStack(Material.COOKED_BEEF, 32));
+							inv.setItem(4, new ItemStack(Material.GOLDEN_APPLE));
+							inv.setItem(5, Crates.createItem(Material.YELLOW_FLOWER, 1, "§61000 Coins"));
+							inv.setItem(6, new ItemStack(Material.IRON_PICKAXE));
+							inv.setItem(7, new ItemStack(Material.SNOW_BLOCK, 16));
+							inv.setItem(8, new ItemStack(Material.IRON_INGOT, 16));
+							inv.setItem(9, Crates.createItem(Material.IRON_CHESTPLATE, 1, "§b§lUltra §r§bBrustplatte"));
+							inv.setItem(10, Crates.createItem(Material.YELLOW_FLOWER, 1, "§6500 Coins"));
+							p.openInventory(inv);
+						} else if(dis.equalsIgnoreCase("§c§lChampion Crate")) {
+							Inventory inv = Bukkit.createInventory(null, 9*3, "§6§lDu kannst gewinnen:");
+							inv.setItem(0, new ItemStack(Material.DIAMOND_BLOCK));
+							inv.setItem(1, new ItemStack(Material.GOLDEN_APPLE, 16));
+							inv.setItem(2, new ItemStack(Material.DIAMOND_HOE));
+							inv.setItem(3, Crates.createItem(Material.YELLOW_FLOWER, 1, "§61000 Coins"));
+							inv.setItem(4, new ItemStack(Material.CAKE));
+							inv.setItem(5, new ItemStack(Material.IRON_PICKAXE));
+							inv.setItem(6, new ItemStack(Material.IRON_INGOT, 32));
+							inv.setItem(7, new ItemStack(Material.DIAMOND_ORE, 8));
+							inv.setItem(8, Crates.createItem(Material.YELLOW_FLOWER, 1, "§6500 Coins"));
+							inv.setItem(9, new ItemStack(Material.IRON_SWORD));
+							inv.setItem(10, new ItemStack(Material.SNOW_BLOCK));
+							inv.setItem(11, Drops.createFireWork("§7Low-Drop", 64, Color.GRAY, 1));
+							p.openInventory(inv);
+						}
+						
 					} catch (NullPointerException ignored) {
 						
 					}
-			} else if(e.getAction() == Action.RIGHT_CLICK_BLOCK && isCrate(e.getItem())) {
-				e.setCancelled(true);
-				p.sendMessage("§9Citybuild §7| §cDu kannst keine Crates platzieren!");
-			} else if(e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) {
-				try {
-					
-					if(e.getItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Spieler Crate")) {
-						Inventory inv = Bukkit.createInventory(null, 9*3, "§6§lDu kannst gewinnen:");
-						inv.setItem(0, new ItemStack(Material.DIAMOND));
-						inv.setItem(1, new ItemStack(Material.APPLE));
-						inv.setItem(2, new ItemStack(Material.WOOD, 16));
-						inv.setItem(3, new ItemStack(Material.BREAD, 16));
-						inv.setItem(4, new ItemStack(Material.EGG));
-						inv.setItem(5, new ItemStack(Material.WOOD_HOE));
-						inv.setItem(6, new ItemStack(Material.IRON_INGOT, 8));
-						inv.setItem(7, new ItemStack(Material.SNOW_BLOCK));
-						inv.setItem(8, new ItemStack(Material.STONE_PICKAXE));
-						inv.setItem(9, new ItemStack(Material.CARROT_ITEM));
-						inv.setItem(10, new ItemStack(Material.SNOW_BLOCK));
-						inv.setItem(11, Drops.createFireWork("§7Low-Drop", 64, Color.GRAY, 1));
-						p.openInventory(inv);
-					} else if(dis.equalsIgnoreCase("§2Legend Crate")){
-						Inventory inv = Bukkit.createInventory(null, 9*3, "§6§lDu kannst gewinnen:");
-						inv.setItem(0, new ItemStack(Material.DIAMOND, 4));
-						inv.setItem(1, new ItemStack(Material.EMERALD));
-						inv.setItem(2, new ItemStack(Material.WOOD, 64));
-						inv.setItem(3, new ItemStack(Material.COOKED_BEEF, 32));
-						inv.setItem(4, new ItemStack(Material.CACTUS));
-						inv.setItem(5, new ItemStack(Material.CARROT_ITEM));
-						inv.setItem(6, new ItemStack(Material.IRON_INGOT, 16));
-						inv.setItem(7, new ItemStack(Material.SNOW_BLOCK, 16));
-						inv.setItem(8, new ItemStack(Material.BOOK));
-						inv.setItem(9, Drops.createFireWork("§bUltra-Drop", 4, Color.AQUA, 1));
-						p.openInventory(inv);
-					} else if(dis.equalsIgnoreCase("§bUltra Crate")) {
-						Inventory inv = Bukkit.createInventory(null, 9*3, "§6§lDu kannst gewinnen:");
-						inv.setItem(0, new ItemStack(Material.DIAMOND, 4));
-						inv.setItem(1, new ItemStack(Material.EMERALD, 4));
-						inv.setItem(2, new ItemStack(Material.WOOD, 64));
-						inv.setItem(3, new ItemStack(Material.COOKED_BEEF, 32));
-						inv.setItem(4, new ItemStack(Material.GOLDEN_APPLE));
-						inv.setItem(5, Crates.createItem(Material.YELLOW_FLOWER, 1, "§61000 Coins"));
-						inv.setItem(6, new ItemStack(Material.IRON_PICKAXE));
-						inv.setItem(7, new ItemStack(Material.SNOW_BLOCK, 16));
-						inv.setItem(8, new ItemStack(Material.IRON_INGOT, 16));
-						inv.setItem(9, Crates.createItem(Material.IRON_CHESTPLATE, 1, "§b§lUltra §r§bBrustplatte"));
-						inv.setItem(10, Crates.createItem(Material.YELLOW_FLOWER, 1, "§6500 Coins"));
-						p.openInventory(inv);
-					} else if(dis.equalsIgnoreCase("§c§lChampion Crate")) {
-						Inventory inv = Bukkit.createInventory(null, 9*3, "§6§lDu kannst gewinnen:");
-						inv.setItem(0, new ItemStack(Material.DIAMOND_BLOCK));
-						inv.setItem(1, new ItemStack(Material.GOLDEN_APPLE, 16));
-						inv.setItem(2, new ItemStack(Material.DIAMOND_HOE));
-						inv.setItem(3, Crates.createItem(Material.YELLOW_FLOWER, 1, "§61000 Coins"));
-						inv.setItem(4, new ItemStack(Material.CAKE));
-						inv.setItem(5, new ItemStack(Material.IRON_PICKAXE));
-						inv.setItem(6, new ItemStack(Material.IRON_INGOT, 32));
-						inv.setItem(7, new ItemStack(Material.DIAMOND_ORE, 8));
-						inv.setItem(8, Crates.createItem(Material.YELLOW_FLOWER, 1, "§6500 Coins"));
-						inv.setItem(9, new ItemStack(Material.IRON_SWORD));
-						inv.setItem(10, new ItemStack(Material.SNOW_BLOCK));
-						inv.setItem(11, Drops.createFireWork("§7Low-Drop", 64, Color.GRAY, 1));
-						p.openInventory(inv);
-					}
-					
-				} catch (NullPointerException ignored) {
-					
 				}
-			}
+		
+			
+		} catch (NullPointerException ignored) {
+			
+		}
+		
 	}
 	
 	private boolean isCrate(ItemStack i) {
