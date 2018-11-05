@@ -42,7 +42,7 @@ public class CrateListener implements Listener {
 			for(int i = 0; i < e.getPlayer().getInventory().getSize(); i++) {
 				if(e.getPlayer().getInventory().getItem(i).getItemMeta().getDisplayName().contains("Crate")) {
 					e.setCancelled(true);
-					e.getPlayer().sendMessage("Geht nicht");
+					e.getPlayer().sendMessage(Var.cb + "§cDu hast eine Crate in deinem Inventar! Du darfst den Amboss dadurch nicht öffnen.");
 					return;
 				}
 			}
