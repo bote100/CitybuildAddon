@@ -10,7 +10,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.event.inventory.InventoryMoveItemEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -18,6 +22,7 @@ import org.bukkit.plugin.Plugin;
 
 import net.bote.citybuild.drops.Drops;
 import net.bote.citybuild.main.Main;
+import net.bote.citybuild.main.Var;
 
 public class CrateListener implements Listener {
 	
@@ -28,6 +33,29 @@ public class CrateListener implements Listener {
 	public CrateListener(Main main) {
 		this.plugin = main;
 		this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
+	}
+	
+	@EventHandler
+	public void onAnvil(PlayerInteractEvent e) {
+		if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
+			if(e.getClickedBlock().getType() != Material.ANVIL) return;
+			for(int i = 0; i < e.getPlayer().getInventory().getSize(); i++) {
+				if(e.getPlayer().getInventory().getItem(i).getItemMeta().getDisplayName().contains("Crate")) {
+					e.setCancelled(true);
+					e.getPlayer().sendMessage("Geht nicht");
+					return;
+				}
+			}
+		}
+	}
+	
+	@EventHandler
+	public void onPickUp(PlayerPickupItemEvent e) {
+		if(e.getPlayer().getOpenInventory() == null) return;
+		if(e.getPlayer().getOpenInventory().getType() != InventoryType.ANVIL) return;
+		if(!e.getItem().getItemStack().getItemMeta().getDisplayName().contains("Crate")) return;
+		e.setCancelled(true);
+		return;
 	}
 	
 	@EventHandler
@@ -50,23 +78,22 @@ public class CrateListener implements Listener {
 							if(e.getItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Spieler Crate")) {
 								Crates.openInventory(p, CrateType.Player_Crate);
 								Crates.list.add(p);
-								removeItem(p, createSkull(dis, "MHF_Chest"), p.getItemInHand().getType(), dis, plugin);
+								removeItems(p.getInventory(), p.getItemInHand().getItemMeta().getDisplayName(), 1);
 								p.updateInventory();
 							} else if(dis.equalsIgnoreCase("§2Legend Crate")){
 								Crates.openInventory(p, CrateType.Legend_Crate);
 								Crates.list.add(p);
-								removeItem(p, createSkull(dis, "MHF_Chest"), p.getItemInHand().getType(), dis, plugin);
+								removeItems(p.getInventory(), p.getItemInHand().getItemMeta().getDisplayName(), 1);
 								p.updateInventory();
 							} else if(dis.equalsIgnoreCase("§bUltra Crate")) {
 								Crates.openInventory(p, CrateType.Ultra_Crate);
 								Crates.list.add(p);
-								removeItem(p, createSkull(dis, "MHF_Chest"), p.getItemInHand().getType(), dis, plugin);
+								removeItems(p.getInventory(), p.getItemInHand().getItemMeta().getDisplayName(), 1);
 								p.updateInventory();
 							} else if(dis.equalsIgnoreCase("§c§lChampion Crate")) {
 								Crates.openInventory(p, CrateType.Champion_Crate);
 								Crates.list.add(p);
-								
-								removeItem(p, createSkull(dis, "MHF_Chest"), p.getItemInHand().getType(), dis, plugin);
+								removeItems(p.getInventory(), p.getItemInHand().getItemMeta().getDisplayName(), 1);
 								p.updateInventory();
 							}
 						} catch (NullPointerException ignored) {
@@ -74,7 +101,7 @@ public class CrateListener implements Listener {
 						}
 				} else if(e.getAction() == Action.RIGHT_CLICK_BLOCK && isCrate(e.getItem())) {
 					e.setCancelled(true);
-					p.sendMessage("§9Citybuild §7| §cDu kannst keine Crates platzieren!");
+					p.sendMessage("§8§l┃ §e§lCityBuild §7× §cDu kannst keine Crates platzieren!");
 				} else if(e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) {
 					try {
 						
@@ -113,24 +140,24 @@ public class CrateListener implements Listener {
 							inv.setItem(2, new ItemStack(Material.WOOD, 64));
 							inv.setItem(3, new ItemStack(Material.COOKED_BEEF, 32));
 							inv.setItem(4, new ItemStack(Material.GOLDEN_APPLE));
-							inv.setItem(5, Crates.createItem(Material.YELLOW_FLOWER, 1, "§61000 Coins"));
+							inv.setItem(5, new ItemStack(Material.BEACON, 1));
 							inv.setItem(6, new ItemStack(Material.IRON_PICKAXE));
 							inv.setItem(7, new ItemStack(Material.SNOW_BLOCK, 16));
 							inv.setItem(8, new ItemStack(Material.IRON_INGOT, 16));
 							inv.setItem(9, Crates.createItem(Material.IRON_CHESTPLATE, 1, "§b§lUltra §r§bBrustplatte"));
-							inv.setItem(10, Crates.createItem(Material.YELLOW_FLOWER, 1, "§6500 Coins"));
+							inv.setItem(10, new ItemStack(Material.IRON_INGOT, 16));
 							p.openInventory(inv);
 						} else if(dis.equalsIgnoreCase("§c§lChampion Crate")) {
 							Inventory inv = Bukkit.createInventory(null, 9*3, "§6§lDu kannst gewinnen:");
-							inv.setItem(0, new ItemStack(Material.DIAMOND_BLOCK));
+							inv.setItem(0, new ItemStack(Material.DIAMOND_BLOCK, 4));
 							inv.setItem(1, new ItemStack(Material.GOLDEN_APPLE, 16));
 							inv.setItem(2, new ItemStack(Material.DIAMOND_HOE));
-							inv.setItem(3, Crates.createItem(Material.YELLOW_FLOWER, 1, "§61000 Coins"));
+							inv.setItem(3, new ItemStack(Material.DIAMOND_BLOCK, 8));
 							inv.setItem(4, new ItemStack(Material.CAKE));
 							inv.setItem(5, new ItemStack(Material.IRON_PICKAXE));
 							inv.setItem(6, new ItemStack(Material.IRON_INGOT, 32));
 							inv.setItem(7, new ItemStack(Material.DIAMOND_ORE, 8));
-							inv.setItem(8, Crates.createItem(Material.YELLOW_FLOWER, 1, "§6500 Coins"));
+							inv.setItem(8, new ItemStack(Material.IRON_BLOCK, 1));
 							inv.setItem(9, new ItemStack(Material.IRON_SWORD));
 							inv.setItem(10, new ItemStack(Material.SNOW_BLOCK));
 							inv.setItem(11, Drops.createFireWork("§7Low-Drop", 64, Color.GRAY, 1));
@@ -182,29 +209,28 @@ public class CrateListener implements Listener {
 	     return itemStack;
 	}
 	
-	private static void removeItem(Player p, ItemStack is, Material mat, String dis, Plugin pl) {
-		amount = 0;
-		for(ItemStack item : p.getInventory().getContents()) {
-			try {
-				if(item.getItemMeta().getDisplayName().equalsIgnoreCase(dis)) {
-					amount += item.getAmount();
-					
-					amount = amount - 1;
-					p.getInventory().removeItem(p.getItemInHand());
-					Bukkit.getScheduler().runTaskLater(pl, new Runnable() {
-
-						@Override
-						public void run() {
-							p.getInventory().setItemInHand(createSkull(amount, dis, "MHF_Chest"));
-						}
-						
-					}, 1);
-					
-				}
-			} catch (NullPointerException ignored) {
-			}
-		}
-	}
+	public static boolean removeItems(Inventory inv, String displayname, int amount) {
+        boolean b = false;
+        ItemStack[] arritemStack = inv.getContents();
+        int n = arritemStack.length;
+        int n2 = 0;
+        while (n2 < n) {
+            ItemStack is = arritemStack[n2];
+            if (is != null && is.getItemMeta().getDisplayName() == displayname) {
+                b = true;
+                int newamount = is.getAmount() - amount;
+                if (newamount > 0) {
+                    is.setAmount(newamount);
+                    break;
+                }
+                inv.remove(is);
+                amount = - newamount;
+                if (amount == 0) break;
+            }
+            ++n2;
+        }
+        return b;
+    }
 	
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
